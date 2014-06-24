@@ -1,0 +1,1 @@
+CREATE TABLE eventos (_id INTEGER PRIMARY KEY AUTOINCREMENT, tipo INTEGER NOT NULL, titulo TEXT NOT NULL, descripcion TEXT, fecha DATE, notificar INTEGER NOT NULL, finalizado BOOLEAN);

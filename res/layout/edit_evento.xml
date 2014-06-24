@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<LinearLayout
+	    android:id="@+id/layoutEditEvent"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="5dp"
+	    android:orientation="vertical"
+	    android:stretchColumns="1" >
+	    
+		<TableLayout
+		    android:id="@+id/layoutEventData"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_margin="5dp"
+		    android:orientation="vertical"
+		    android:stretchColumns="1" >
+	
+			<TextView
+			    android:id="@+id/txtTitulo"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="@string/txtTitulo" />
+	
+		    <EditText
+		        android:id="@+id/edTitulo"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:inputType="text" >
+		        <requestFocus />
+		    </EditText>
+	
+		    <TextView
+		        android:id="@+id/txtDescripcion"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/txtDescripcion" />
+	
+		    <EditText
+		        android:id="@+id/edDescripcion"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:inputType="text" />
+		    
+		    <TextView
+		        android:id="@+id/txtTipo"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/txtTipo" />
+	
+		    <RadioGroup
+		        android:id="@+id/radioTipo"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal" >
+	
+		        <RadioButton
+		            android:id="@+id/rdTask"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:checked="true"
+		            android:text="@string/txtTask" />
+	
+		        <RadioButton
+		            android:id="@+id/rdWork"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:text="@string/txtWork" />
+	
+		    </RadioGroup>
+	
+		</TableLayout>
+		
+		<CheckBox
+		    android:id="@+id/chkNotify"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="@string/txtNotify" />
+
+		<Button
+		    android:id="@+id/btnSaveTop"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center_vertical|center_horizontal"
+		    android:layout_marginTop="20dp"
+		    android:onClick="onSaveClick"
+		    android:text="@string/btnSave" />
+	
+		<!-- Esta Vista dibuja una línea en el UI -->
+	    <View
+	        android:id="@+id/viewLine"
+	        android:layout_width="wrap_content"
+	        android:layout_height="1dip"
+	        android:background="#FF909090" />
+		
+		<TableLayout
+		    android:id="@+id/layoutNotifyData"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="10dp"
+		    android:layout_marginTop="10dp"
+		    android:stretchColumns="1" >
+		    
+		    <TableRow
+		        android:id="@+id/rowTipoNotify"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content" >
+		
+		        <TextView
+		            android:id="@+id/txtTipoNotify"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_vertical"
+		            android:text="@string/txtTipoNotify" />
+		
+		        <LinearLayout
+		            android:id="@+id/layoutNotify"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="right"
+		            android:orientation="horizontal" >
+		            
+		            <CheckBox
+			            android:id="@+id/chkAlarm"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="@string/txtNotifyAlarm" />
+		        
+			        <CheckBox
+			            android:id="@+id/chkNotifyBar"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="@string/txtNotifyBar" />
+		            
+		        </LinearLayout>	
+		    </TableRow>
+	
+		    <LinearLayout
+		        android:id="@+id/layoutDateTime"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginTop="20dp"
+		        android:baselineAligned="false"
+		        android:orientation="horizontal" >
+	
+		        <Button
+		            android:id="@+id/btnDate"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:text="@string/txtBtnDate" />
+	
+		        <Button
+		            android:id="@+id/btnTime"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:text="@string/txtBtnTime" />
+		    </LinearLayout>
+	
+		    <LinearLayout
+		        android:id="@+id/layoutTxtDateTime"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="20dp" >
+	
+		        <TextView
+		            android:id="@+id/txtDateSelected"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/txtDate" />
+	
+		        <TextView
+		            android:id="@+id/edDateTimeSelected"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_horizontal"
+		            android:layout_marginLeft="5dp"
+		            android:text="@string/txtNoDateTime" />
+		    </LinearLayout>
+	
+		</TableLayout>
+	
+		<Button
+		    android:id="@+id/btnSave"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center_vertical|center_horizontal"
+		    android:layout_marginTop="20dp"
+		    android:onClick="onSaveClick"
+		    android:text="@string/btnSave" />
+	
+	</LinearLayout>
+</ScrollView>

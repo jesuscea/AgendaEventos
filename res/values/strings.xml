@@ -1,0 +1,76 @@
+<resources>
+
+    <string name="app_name">Agenda de eventos</string>
+    <string name="edit_event_activity_label">Editor de evento</string>
+    
+    <string name="serviceStateRunning">Servicio ejecutándose</string>
+    <string name="serviceStateStoped">Servicio detenido</string>
+    
+    <!-- Pestañas -->
+    <string name="tabTasksId">tabTareas</string>
+    <string name="tabTasks">Tareas</string>  
+    <string name="tabWorkId">tabTrabajo</string>
+    <string name="tabWork">Trabajo</string>
+    <string name="tabAlarmId">tabAvisos</string>
+    <string name="tabAlarm">Avisos</string>
+    <string name="empty_tasks">No existen tareas. Pulse el botón \'Menú\' para crear un nuevo evento</string>
+    <string name="empty_work">No existen eventos de trabajo. Pulse el botón \'Menú\' para crear un nuevo evento</string>
+    <string name="empty_alarms">No existen avisos. Pulse el botón \'Menú\' para crear un nuevo evento</string>
+    
+    <!-- Menú contextual -->
+    <string name="txtEditar">Editar</string>
+    <string name="txtEliminar">Eliminar</string>
+    
+    <!-- Menú de opciones -->
+    <string name="menuNew">Nuevo</string>
+    <string name="menuOptions">Preferencias</string>
+    <string name="menuAbout">Acerca</string>
+    
+    <!-- Strings para la edición de eventos -->
+    <string name="txtTitulo">Título:</string>
+    <string name="txtDescripcion">Descripción:</string>
+    <string name="txtTipo">Tipo de evento:</string>
+    <string name="txtTask">Tarea</string>
+    <string name="txtWork">Trabajo</string>
+    <string name="txtNotify">Notificar evento</string>
+    <string name="txtTipoNotify">Tipo:</string>
+    <string name="txtNotifyAlarm">Alarma</string>
+    <string name="txtNotifyBar">Notificación</string>
+    <string name="txtNotifyBoth">Ambas</string>
+    <string name="txtDate">Fecha:</string>
+    <string name="txtTime">Hora:</string>
+    <string name="txtBtnDate">Selecionar una fecha</string>
+    <string name="txtBtnTime">Seleccionar una hora</string>
+    <string name="txtNoDateTime"> </string>
+    <string name="btnSave">Guardar Evento</string>
+    
+    <!-- Strings para el menú de opciones -->
+    <string name="prefTabs">Pestañas:</string>
+    <string name="prefTabTaskSummary">Activa la pestaña Tareas</string>
+    <string name="prefTabWorkSummary">Activa la pestaña Trabajo</string>
+    <string name="prefTabAlarmsSummary">Activa la pestaña Avisos</string>
+    <string name="prefTabOrder">Orden de pestañas:</string>
+    <string name="prefTabOrderSummary">Click para bajar</string>
+    
+    <string name="prefSound">Sonido alarma:</string>
+    <string name="prefRingtone">Establecer tono</string>
+    <string name="prefVibrate">Vibrar</string>
+    <string name="prefVibrateSummary">Activa la vibración al sonar la alarma</string>
+    
+    <!-- Mensajes -->
+    <string name="msgCreate">El evento ha sido creado correctamente</string>
+    <string name="msgUpdate">El evento ha sido actualizado correctamente</string>
+    <string name="msgDelete">El evento ha sido eliminado correctamente</string>
+    <!-- Mensajes de error -->
+    <string name="msgNoTitle">ERROR: Debe introducir un título del evento</string>
+    <string name="msgNoTipo">ERROR: Debe seleccionar el tipo de evento</string>
+    <string name="msgNoNotify">ERROR: Debe seleccionar un modo de notificar el evento</string>
+    <string name="msgBadDate">ERROR: La fecha y hora debe ser posterior</string>
+    
+    <!-- Diálogo de alarma -->
+    <string name="dialogBtnCerrar">Cerrar</string>
+    
+    <!-- Diálogo "Acerca de" -->
+    <string name="aboutApp">Desarrollado por Jesús Cea Oliva, 2014</string>
+
+</resources>

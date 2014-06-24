@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- Establecer el sonido de alarma y activar/desactivar la vibración -->
+    <PreferenceCategory android:title="@string/prefSound">
+        <RingtonePreference android:key="prefRingtone"
+            android:title="@string/prefRingtone"
+            android:summary="Default"
+            android:ringtoneType="all"
+            android:showDefault="true"
+            android:showSilent="false" />            
+        
+        <CheckBoxPreference
+            android:key="chkVibrate"
+            android:title="@string/prefVibrate"
+            android:summary="@string/prefVibrateSummary" android:defaultValue="false"/>
+    </PreferenceCategory>
+    
+    <!-- Opciones para mostrar/ocultar pestañas -->
+    <PreferenceCategory android:title="@string/prefTabs">
+        <CheckBoxPreference
+            android:key="chkTasks"
+            android:title="@string/tabTasks"
+            android:summary="@string/prefTabTaskSummary" android:defaultValue="true"/>
+        
+        <CheckBoxPreference
+            android:key="chkWork"
+            android:title="@string/tabWork"
+            android:summary="@string/prefTabWorkSummary" android:defaultValue="true"/>
+        
+        <CheckBoxPreference
+            android:key="chkAlarms"
+            android:title="@string/tabAlarm"
+            android:summary="@string/prefTabAlarmsSummary" android:defaultValue="true"/>
+    </PreferenceCategory>
+    
+    <!-- Orden de las pestañas -->
+    <PreferenceCategory android:title="@string/prefTabOrder">
+        <Preference android:defaultValue="0" 
+            android:key="btnTasks" 
+            android:title="@string/tabTasks" 
+            android:summary="@string/prefTabOrderSummary"/>
+        <Preference android:defaultValue="0" 
+            android:key="btnWork" 
+            android:title="@string/tabWork" 
+            android:summary="@string/prefTabOrderSummary"/>
+        <Preference android:defaultValue="0" 
+            android:key="btnAlarms" 
+            android:title="@string/tabAlarm" 
+            android:summary="@string/prefTabOrderSummary"/>
+    </PreferenceCategory>
+</PreferenceScreen>

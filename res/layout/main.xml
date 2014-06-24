@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+	<TabHost android:id="@android:id/tabhost"
+		 android:layout_width="match_parent"
+		 android:layout_height="match_parent">
+		 
+		<LinearLayout
+	        android:orientation="vertical"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent" >
+			
+			<TabWidget android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+		     			android:id="@android:id/tabs" />
+	
+			<FrameLayout android:layout_width="match_parent"
+		     			  android:layout_height="match_parent"
+		     			  android:id="@android:id/tabcontent" >
+	
+				<LinearLayout android:id="@+id/tabTasks"
+					  android:orientation="vertical"
+					  android:layout_width="match_parent"
+					  android:layout_height="match_parent" >
+					<ListView
+						    android:id="@+id/listTasks"
+						    android:layout_width="match_parent"
+						    android:layout_height="match_parent" />
+					
+					<TextView 
+						    android:id="@android:id/empty"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:text="@string/empty_tasks" />
+				</LinearLayout>
+	
+		     	<LinearLayout android:id="@+id/tabWork"
+					  android:orientation="vertical"
+					  android:layout_width="match_parent"
+					  android:layout_height="match_parent" >
+		    		<ListView
+						    android:id="@+id/listWork"
+						    android:layout_width="match_parent"
+						    android:layout_height="match_parent" />
+		    		
+		    		<TextView 
+						    android:id="@android:id/empty"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:text="@string/empty_work" />
+				</LinearLayout>
+				
+		     	<LinearLayout android:id="@+id/tabAlarms"
+					  android:orientation="vertical"
+					  android:layout_width="match_parent"
+					  android:layout_height="match_parent" >
+		    		<ListView
+						    android:id="@+id/listAlarms"
+						    android:layout_width="match_parent"
+						    android:layout_height="match_parent" />
+		    		
+		    		<TextView 
+						    android:id="@android:id/empty"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:text="@string/empty_alarms" />
+				</LinearLayout>
+		     </FrameLayout>
+		</LinearLayout>
+		
+	</TabHost>
+    
+</LinearLayout>

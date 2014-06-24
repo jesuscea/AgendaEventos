@@ -1,0 +1,53 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cea.eventos"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="10" />
+
+    <!-- Permisos de la aplicación -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    
+    <application
+        android:name=".AgendaEventos"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+        <activity android:name=".EventosActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Actividad de edición de eventos -->
+        <activity android:name=".EditEventoActivity" 
+            	  android:label="@string/edit_event_activity_label"/>
+        
+        <!-- Pantalla de preferencias -->
+        <activity android:name=".PreferenciasActivity"
+				  android:label="@string/app_name" />
+        
+        <activity android:name=".DialogNotify"
+				  android:label="@string/app_name" />
+
+        
+        <!-- Activa el serivicio cuando el dispositivo ya está completamente iniciado -->
+        <receiver android:name=".NotifySetter">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        
+        <!-- Servicio y receptor para la gestión de alarmas -->
+        <receiver android:name=".NotifyReceiver"></receiver>         
+        <service android:name=".NotifyService"></service>
+        
+    </application>
+</manifest>
