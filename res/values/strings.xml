@@ -1,76 +1,76 @@
 <resources>
 
     <string name="app_name">Agenda de eventos</string>
-    <string name="edit_event_activity_label">Editor de evento</string>
+    <string name="edit_event_activity_label">Event editor</string>
     
-    <string name="serviceStateRunning">Servicio ejecutándose</string>
-    <string name="serviceStateStoped">Servicio detenido</string>
+    <string name="serviceStateRunning">Service running</string>
+    <string name="serviceStateStoped">Service stoped</string>
     
     <!-- Pestañas -->
-    <string name="tabTasksId">tabTareas</string>
-    <string name="tabTasks">Tareas</string>  
-    <string name="tabWorkId">tabTrabajo</string>
-    <string name="tabWork">Trabajo</string>
-    <string name="tabAlarmId">tabAvisos</string>
-    <string name="tabAlarm">Avisos</string>
-    <string name="empty_tasks">No existen tareas. Pulse el botón \'Menú\' para crear un nuevo evento</string>
-    <string name="empty_work">No existen eventos de trabajo. Pulse el botón \'Menú\' para crear un nuevo evento</string>
-    <string name="empty_alarms">No existen avisos. Pulse el botón \'Menú\' para crear un nuevo evento</string>
+    <string name="tabTasksId">tabTasks</string>
+    <string name="tabTasks">Tasks</string>  
+    <string name="tabWorkId">tabWork</string>
+    <string name="tabWork">Work</string>
+    <string name="tabAlarmId">tabAlarms</string>
+    <string name="tabAlarm">Alarms</string>
+    <string name="empty_tasks">No task events. Press \'Menu\' to add a new task event.</string>
+    <string name="empty_work">No work events. Press \'Menu\' to add a new work event.</string>
+    <string name="empty_alarms">No alarms. Press \'Menu\' to add a new event.</string>
     
     <!-- Menú contextual -->
-    <string name="txtEditar">Editar</string>
-    <string name="txtEliminar">Eliminar</string>
+    <string name="txtEditar">Edit</string>
+    <string name="txtEliminar">Delete</string>
     
     <!-- Menú de opciones -->
-    <string name="menuNew">Nuevo</string>
-    <string name="menuOptions">Preferencias</string>
-    <string name="menuAbout">Acerca</string>
+    <string name="menuNew">New</string>
+    <string name="menuOptions">Preferences</string>
+    <string name="menuAbout">About</string>
     
     <!-- Strings para la edición de eventos -->
-    <string name="txtTitulo">Título:</string>
-    <string name="txtDescripcion">Descripción:</string>
-    <string name="txtTipo">Tipo de evento:</string>
-    <string name="txtTask">Tarea</string>
-    <string name="txtWork">Trabajo</string>
-    <string name="txtNotify">Notificar evento</string>
-    <string name="txtTipoNotify">Tipo:</string>
-    <string name="txtNotifyAlarm">Alarma</string>
-    <string name="txtNotifyBar">Notificación</string>
-    <string name="txtNotifyBoth">Ambas</string>
-    <string name="txtDate">Fecha:</string>
-    <string name="txtTime">Hora:</string>
-    <string name="txtBtnDate">Selecionar una fecha</string>
-    <string name="txtBtnTime">Seleccionar una hora</string>
+    <string name="txtTitulo">Title:</string>
+    <string name="txtDescripcion">Description:</string>
+    <string name="txtTipo">Event type:</string>
+    <string name="txtTask">Task</string>
+    <string name="txtWork">Work</string>
+    <string name="txtNotify">Notify event</string>
+    <string name="txtTipoNotify">Type:</string>
+    <string name="txtNotifyAlarm">Alarm</string>
+    <string name="txtNotifyBar">Notification</string>
+    <string name="txtNotifyBoth">Both</string>
+    <string name="txtDate">Date:</string>
+    <string name="txtTime">Time:</string>
+    <string name="txtBtnDate">Select a date</string>
+    <string name="txtBtnTime">Select a time</string>
     <string name="txtNoDateTime"> </string>
-    <string name="btnSave">Guardar Evento</string>
+    <string name="btnSave">Save Event</string>
     
     <!-- Strings para el menú de opciones -->
-    <string name="prefTabs">Pestañas:</string>
-    <string name="prefTabTaskSummary">Activa la pestaña Tareas</string>
-    <string name="prefTabWorkSummary">Activa la pestaña Trabajo</string>
-    <string name="prefTabAlarmsSummary">Activa la pestaña Avisos</string>
-    <string name="prefTabOrder">Orden de pestañas:</string>
-    <string name="prefTabOrderSummary">Click para bajar</string>
+    <string name="prefTabs">Tabs:</string>
+    <string name="prefTabTaskSummary">Show Tasks tab</string>
+    <string name="prefTabWorkSummary">Show Works tab</string>
+    <string name="prefTabAlarmsSummary">Show Alarms tab</string>
+    <string name="prefTabOrder">Tabs order:</string>
+    <string name="prefTabOrderSummary">Click for down</string>
     
-    <string name="prefSound">Sonido alarma:</string>
-    <string name="prefRingtone">Establecer tono</string>
-    <string name="prefVibrate">Vibrar</string>
-    <string name="prefVibrateSummary">Activa la vibración al sonar la alarma</string>
+    <string name="prefSound">Ringtone:</string>
+    <string name="prefRingtone">Set ringtone</string>
+    <string name="prefVibrate">Vibration</string>
+    <string name="prefVibrateSummary">Set vibration with alarm</string>
     
     <!-- Mensajes -->
-    <string name="msgCreate">El evento ha sido creado correctamente</string>
-    <string name="msgUpdate">El evento ha sido actualizado correctamente</string>
-    <string name="msgDelete">El evento ha sido eliminado correctamente</string>
+    <string name="msgCreate">Event created successfully</string>
+    <string name="msgUpdate">Event updated successfully</string>
+    <string name="msgDelete">Event deleted successfully</string>
     <!-- Mensajes de error -->
-    <string name="msgNoTitle">ERROR: Debe introducir un título del evento</string>
-    <string name="msgNoTipo">ERROR: Debe seleccionar el tipo de evento</string>
-    <string name="msgNoNotify">ERROR: Debe seleccionar un modo de notificar el evento</string>
-    <string name="msgBadDate">ERROR: La fecha y hora debe ser posterior</string>
+    <string name="msgNoTitle">ERROR: You have add a event title</string>
+    <string name="msgNoTipo">ERROR: You have add a event type</string>
+    <string name="msgNoNotify">ERROR: You have to set how notify event</string>
+    <string name="msgBadDate">ERROR: Date and time must be after</string>
     
     <!-- Diálogo de alarma -->
-    <string name="dialogBtnCerrar">Cerrar</string>
+    <string name="dialogBtnCerrar">Close</string>
     
     <!-- Diálogo "Acerca de" -->
-    <string name="aboutApp">Desarrollado por Jesús Cea Oliva, 2014</string>
+    <string name="aboutApp">Developed by Jesús Cea Oliva, 2014</string>
 
 </resources>
