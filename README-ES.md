@@ -1,6 +1,10 @@
 AgendaEventos
 =============
 
+# Descripción
+
+**Enlace Playstore:** https://play.google.com/store/apps/details?id=com.cea.eventos
+
 App para Android 2.3 en adelante, la cuál permite gestionar tareas cotidianas y de trabajo, permitiendo ser 
 notificados con una alarma o una notificación en la barra de notificaciones.
 
