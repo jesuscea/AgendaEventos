@@ -2,7 +2,7 @@ package com.cea.eventos;
 
 import android.app.Application;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
+import android.media.Ringtone;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 
@@ -11,7 +11,7 @@ public class AgendaEventos extends Application {
 	
     public static EventosDBAdapter dbAdapter;
     public static SharedPreferences sharedPref;
-    public static MediaPlayer mMediaPlayer;
+    public static Ringtone mRingTone;
  
     @Override
     public void onCreate() {
@@ -23,9 +23,6 @@ public class AgendaEventos extends Application {
         // Adaptador de eventos
  		dbAdapter = new EventosDBAdapter(this);
  		dbAdapter.abrir();
- 		
- 		// Reproductor de sonidos
- 		mMediaPlayer = new MediaPlayer();
     }
      
     public static String getRingtone() {   	

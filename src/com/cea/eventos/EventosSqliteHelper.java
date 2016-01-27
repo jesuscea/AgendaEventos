@@ -11,9 +11,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class EventosSqliteHelper extends SQLiteOpenHelper {
-	// Definimos el nombre y la versión de la BD
+	// Definimos el nombre y la version de la BD
 	private static final String BD_NOMBRE = "bdeventos.db";
-	private static final int BD_VERSION = 1;
+    private static final int BD_VERSION = 2;    // Nueva version para repetir alarmas
 	
 	// Setencia SQL que usaremos para ejecutar las consultas y operaciones
 	private static String strSQL = "";
@@ -27,7 +27,7 @@ public class EventosSqliteHelper extends SQLiteOpenHelper {
 		this.context = context;
 	}
 	
-	// Método iniciado por Android si no existe la BD
+	// Metodo iniciado por Android si no existe la BD
 	@Override
 	public void onCreate(SQLiteDatabase database) {
 		// Creamos la estructura de la BD y rellenamos los datos
@@ -49,11 +49,28 @@ public class EventosSqliteHelper extends SQLiteOpenHelper {
 	}
 	
 	
-	// Método iniciado por Android cuando hay un cambio de versión
+	// Metodo iniciado por Android cuando hay un cambio de version
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int iOldVersion, int iNewVersion) {
 		// En nuestro caso, eliminamos la BD y volvemos a crearla
-		database.execSQL(strSQL_Borrar);
-		onCreate(database);
+		//database.execSQL(strSQL_Borrar);
+		//onCreate(database);
+
+		// Updating the database with raw file 'dbconnections_update.db'
+		try {
+			BufferedReader fIn = new BufferedReader(new InputStreamReader(context.getResources()
+					.openRawResource(R.raw.dbeventos_update)));
+			String strSQL;
+			while ((strSQL = fIn.readLine()) != null) {
+				database.execSQL(strSQL);
+			}
+			fIn.close();
+		}
+		catch (FileNotFoundException e) {
+			Log.e("AgendaEventos", "dbeventos_update ERROR: Error opening the BD");
+		}
+		catch (IOException e) {
+			Log.e("AgendaEventos", "dbeventos_update ERROR: Error reading the BD");
+		}
 	}
 }

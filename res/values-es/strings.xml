@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name">Agenda de eventos</string>
+    <string name="app_version">2.0</string>
     <string name="edit_event_activity_label">Editor de evento</string>
     
     <string name="serviceStateRunning">Servicio ejecutándose</string>
@@ -11,13 +12,14 @@
     <string name="tabTasks">Tareas</string>  
     <string name="tabWorkId">tabTrabajo</string>
     <string name="tabWork">Trabajo</string>
+    <string name="tabShopId">tabCompras</string>
+    <string name="tabShop">Compras</string>
     <string name="tabAlarmId">tabAvisos</string>
     <string name="tabAlarm">Avisos</string>
-    <string name="empty_tasks">No existen tareas. Pulse el botón \'Menú\' para crear un nuevo evento</string>
-    <string name="empty_work">No existen eventos de trabajo. Pulse el botón \'Menú\' para crear un nuevo evento</string>
-    <string name="empty_alarms">No existen avisos. Pulse el botón \'Menú\' para crear un nuevo evento</string>
-    
+    <string name="empty_events">No existen eventos. Pulse el botón \'Menú\' para crear un nuevo evento</string>
+
     <!-- Menú contextual -->
+    <string name="txtFin">Finalizar Evento</string>
     <string name="txtEditar">Editar</string>
     <string name="txtEliminar">Eliminar</string>
     
@@ -32,6 +34,7 @@
     <string name="txtTipo">Tipo de evento:</string>
     <string name="txtTask">Tarea</string>
     <string name="txtWork">Trabajo</string>
+    <string name="txtShop">Compras</string>
     <string name="txtNotify">Notificar evento</string>
     <string name="txtTipoNotify">Tipo:</string>
     <string name="txtNotifyAlarm">Alarma</string>
@@ -42,12 +45,21 @@
     <string name="txtBtnDate">Selecionar una fecha</string>
     <string name="txtBtnTime">Seleccionar una hora</string>
     <string name="txtNoDateTime"> </string>
+    <string name="txtRepeat">Repetir</string>
+    <string name="txtMonday">LUN</string>
+    <string name="txtTuesday">MAR</string>
+    <string name="txtWednesday">MIE</string>
+    <string name="txtThursday">JUE</string>
+    <string name="txtFriday">VIE</string>
+    <string name="txtSaturday">SÁB</string>
+    <string name="txtSunday">DOM</string>
     <string name="btnSave">Guardar Evento</string>
     
     <!-- Strings para el menú de opciones -->
     <string name="prefTabs">Pestañas:</string>
     <string name="prefTabTaskSummary">Activa la pestaña Tareas</string>
     <string name="prefTabWorkSummary">Activa la pestaña Trabajo</string>
+    <string name="prefTabShopSummary">Activa la pestaña Compras</string>
     <string name="prefTabAlarmsSummary">Activa la pestaña Avisos</string>
     <string name="prefTabOrder">Orden de pestañas:</string>
     <string name="prefTabOrderSummary">Click para bajar</string>
@@ -56,6 +68,10 @@
     <string name="prefRingtone">Establecer tono</string>
     <string name="prefVibrate">Vibrar</string>
     <string name="prefVibrateSummary">Activa la vibración al sonar la alarma</string>
+
+    <string name="prefAutoEnd">Finalizar eventos</string>
+    <string name="prefAutoEndEvent">Finalizar evento automáticamente al notificar</string>
+    <string name="prefAutoEndEventSummary">Finaliza el evento automáticamente, una vez se notifique el evento</string>
     
     <!-- Mensajes -->
     <string name="msgCreate">El evento ha sido creado correctamente</string>
@@ -71,6 +87,6 @@
     <string name="dialogBtnCerrar">Cerrar</string>
     
     <!-- Diálogo "Acerca de" -->
-    <string name="aboutApp">Desarrollado por Jesús Cea Oliva, 2014</string>
+    <string name="aboutApp">Desarrollado por Jesús Cea Oliva, May. 2015</string>
 
 </resources>

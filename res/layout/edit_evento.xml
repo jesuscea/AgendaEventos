@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" android:layout_height="fill_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_parent_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
 	<LinearLayout
 	    android:id="@+id/layoutEditEvent"
 	    android:layout_width="match_parent"
@@ -69,11 +76,18 @@
 		            android:layout_height="wrap_content"
 		            android:layout_weight="1"
 		            android:text="@string/txtWork" />
+
+                <RadioButton
+                    android:id="@+id/rdShop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/txtShop" />
 	
 		    </RadioGroup>
 	
 		</TableLayout>
-		
+
 		<CheckBox
 		    android:id="@+id/chkNotify"
 		    android:layout_width="wrap_content"
@@ -182,10 +196,116 @@
 		            android:layout_marginLeft="5dp"
 		            android:text="@string/txtNoDateTime" />
 		    </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/chkRepeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtRepeat" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/lyRepeat">
+
+                <!-- Esta Vista dibuja una línea en el UI -->
+                <View
+                    android:id="@+id/viewLineRepeatUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:background="#FF909090" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <ToggleButton
+                        android:id="@+id/chkMonday"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textOn="@string/txtMonday"
+                        android:textOff="@string/txtMonday"
+                        android:layout_weight="1"
+                        android:background="@color/selector_day"
+                        android:textColor="@color/selector_day" />
+
+                    <ToggleButton
+                        android:id="@+id/chkTuesday"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textOn="@string/txtTuesday"
+                        android:textOff="@string/txtTuesday"
+                        android:layout_weight="1"
+                        android:background="@color/selector_day"
+                        android:textColor="@color/selector_day" />
+
+                    <ToggleButton
+                        android:id="@+id/chkWednesday"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textOn="@string/txtWednesday"
+                        android:textOff="@string/txtWednesday"
+                        android:layout_weight="1"
+                        android:background="@color/selector_day"
+                        android:textColor="@color/selector_day" />
+
+                    <ToggleButton
+                        android:id="@+id/chkThursday"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textOn="@string/txtThursday"
+                        android:textOff="@string/txtThursday"
+                        android:layout_weight="1"
+                        android:background="@color/selector_day"
+                        android:textColor="@color/selector_day" />
+
+                    <ToggleButton
+                        android:id="@+id/chkFriday"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textOn="@string/txtFriday"
+                        android:textOff="@string/txtFriday"
+                        android:layout_weight="1"
+                        android:background="@color/selector_day"
+                        android:textColor="@color/selector_day" />
+
+                    <ToggleButton
+                        android:id="@+id/chkSaturday"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textOn="@string/txtSaturday"
+                        android:textOff="@string/txtSaturday"
+                        android:layout_weight="1"
+                        android:background="@color/selector_day"
+                        android:textColor="@color/selector_day" />
+
+                    <ToggleButton
+                        android:id="@+id/chkSunday"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textOn="@string/txtSunday"
+                        android:textOff="@string/txtSunday"
+                        android:layout_weight="1"
+                        android:background="@color/selector_day"
+                        android:textColor="@color/selector_day" />
+
+                </LinearLayout>
+
+                <!-- Esta Vista dibuja una línea en el UI -->
+                <View
+                    android:id="@+id/viewLineRepeatDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dip"
+                    android:background="#FF909090" />
+            </LinearLayout>
 	
 		</TableLayout>
-	
-		<Button
+
+        <Button
 		    android:id="@+id/btnSave"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"

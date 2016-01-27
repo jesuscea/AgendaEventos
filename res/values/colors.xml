@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#ff0072c3</color>
+    <color name="primaryColorDark">#ff0063af</color>
+
+    <color name="tab_default_selected_indicator_color">#fff5f5f5</color>
+    <color name="day_checked">#ff0072c2</color>
+    <color name="day_unchecked">#ffe8e8e8</color>
+</resources>

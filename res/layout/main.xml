@@ -3,74 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-	<TabHost android:id="@android:id/tabhost"
-		 android:layout_width="match_parent"
-		 android:layout_height="match_parent">
-		 
-		<LinearLayout
-	        android:orientation="vertical"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent" >
-			
-			<TabWidget android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-		     			android:id="@android:id/tabs" />
-	
-			<FrameLayout android:layout_width="match_parent"
-		     			  android:layout_height="match_parent"
-		     			  android:id="@android:id/tabcontent" >
-	
-				<LinearLayout android:id="@+id/tabTasks"
-					  android:orientation="vertical"
-					  android:layout_width="match_parent"
-					  android:layout_height="match_parent" >
-					<ListView
-						    android:id="@+id/listTasks"
-						    android:layout_width="match_parent"
-						    android:layout_height="match_parent" />
-					
-					<TextView 
-						    android:id="@android:id/empty"
-						    android:layout_width="wrap_content"
-						    android:layout_height="wrap_content"
-						    android:text="@string/empty_tasks" />
-				</LinearLayout>
-	
-		     	<LinearLayout android:id="@+id/tabWork"
-					  android:orientation="vertical"
-					  android:layout_width="match_parent"
-					  android:layout_height="match_parent" >
-		    		<ListView
-						    android:id="@+id/listWork"
-						    android:layout_width="match_parent"
-						    android:layout_height="match_parent" />
-		    		
-		    		<TextView 
-						    android:id="@android:id/empty"
-						    android:layout_width="wrap_content"
-						    android:layout_height="wrap_content"
-						    android:text="@string/empty_work" />
-				</LinearLayout>
-				
-		     	<LinearLayout android:id="@+id/tabAlarms"
-					  android:orientation="vertical"
-					  android:layout_width="match_parent"
-					  android:layout_height="match_parent" >
-		    		<ListView
-						    android:id="@+id/listAlarms"
-						    android:layout_width="match_parent"
-						    android:layout_height="match_parent" />
-		    		
-		    		<TextView 
-						    android:id="@android:id/empty"
-						    android:layout_width="wrap_content"
-						    android:layout_height="wrap_content"
-						    android:text="@string/empty_alarms" />
-				</LinearLayout>
-		     </FrameLayout>
-		</LinearLayout>
-		
-	</TabHost>
-    
+
+    <!-- We use a Toolbar so that our drawer can be displayed
+                     in front of the action bar -->
+    <include layout="@layout/toolbar"/>
+
+    <tabs.SlidingTabLayout
+        android:id="@+id/tabs"
+        android:background="@color/primaryColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <ImageButton
+        android:id="@+id/fab_new_event"
+        android:layout_width="@dimen/fab_button_diameter"
+        android:layout_height="@dimen/fab_button_diameter"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/fab_button_margin_bottom"
+        android:layout_marginRight="@dimen/fab_button_margin_right"
+        android:background="@drawable/fab_shape"
+        android:src="@drawable/fab_ic_add"
+        android:tint="@android:color/white"
+        android:layout_gravity="right" />
+
 </LinearLayout>

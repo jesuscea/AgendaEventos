@@ -1,6 +1,7 @@
 <resources>
 
-    <string name="app_name">Agenda de eventos</string>
+    <string name="app_name">Events Manager</string>
+    <string name="app_version">2.0</string>
     <string name="edit_event_activity_label">Event editor</string>
     
     <string name="serviceStateRunning">Service running</string>
@@ -11,13 +12,14 @@
     <string name="tabTasks">Tasks</string>  
     <string name="tabWorkId">tabWork</string>
     <string name="tabWork">Work</string>
+    <string name="tabShopId">tabShop</string>
+    <string name="tabShop">Shopping</string>
     <string name="tabAlarmId">tabAlarms</string>
     <string name="tabAlarm">Alarms</string>
-    <string name="empty_tasks">No task events. Press \'Menu\' to add a new task event.</string>
-    <string name="empty_work">No work events. Press \'Menu\' to add a new work event.</string>
-    <string name="empty_alarms">No alarms. Press \'Menu\' to add a new event.</string>
+    <string name="empty_events">No events. Press \'Menu\' to add a new task event.</string>
     
     <!-- Menú contextual -->
+    <string name="txtFin">End Event</string>
     <string name="txtEditar">Edit</string>
     <string name="txtEliminar">Delete</string>
     
@@ -32,6 +34,7 @@
     <string name="txtTipo">Event type:</string>
     <string name="txtTask">Task</string>
     <string name="txtWork">Work</string>
+    <string name="txtShop">Shopping</string>
     <string name="txtNotify">Notify event</string>
     <string name="txtTipoNotify">Type:</string>
     <string name="txtNotifyAlarm">Alarm</string>
@@ -42,12 +45,21 @@
     <string name="txtBtnDate">Select a date</string>
     <string name="txtBtnTime">Select a time</string>
     <string name="txtNoDateTime"> </string>
+    <string name="txtRepeat">Repeat</string>
+    <string name="txtMonday">MON</string>
+    <string name="txtTuesday">TUE</string>
+    <string name="txtWednesday">WED</string>
+    <string name="txtThursday">THU</string>
+    <string name="txtFriday">FRI</string>
+    <string name="txtSaturday">SAT</string>
+    <string name="txtSunday">SUN</string>
     <string name="btnSave">Save Event</string>
     
     <!-- Strings para el menú de opciones -->
     <string name="prefTabs">Tabs:</string>
     <string name="prefTabTaskSummary">Show Tasks tab</string>
     <string name="prefTabWorkSummary">Show Works tab</string>
+    <string name="prefTabShopSummary">Show Shopping tab</string>
     <string name="prefTabAlarmsSummary">Show Alarms tab</string>
     <string name="prefTabOrder">Tabs order:</string>
     <string name="prefTabOrderSummary">Click for down</string>
@@ -56,6 +68,10 @@
     <string name="prefRingtone">Set ringtone</string>
     <string name="prefVibrate">Vibration</string>
     <string name="prefVibrateSummary">Set vibration with alarm</string>
+
+    <string name="prefAutoEnd">End events</string>
+    <string name="prefAutoEndEvent">End events automatically after notify</string>
+    <string name="prefAutoEndEventSummary">End event after notify</string>
     
     <!-- Mensajes -->
     <string name="msgCreate">Event created successfully</string>
@@ -71,6 +87,6 @@
     <string name="dialogBtnCerrar">Close</string>
     
     <!-- Diálogo "Acerca de" -->
-    <string name="aboutApp">Developed by Jesús Cea Oliva, 2014</string>
+    <string name="aboutApp">Developed by Jesús Cea Oliva, May. 2015</string>
 
 </resources>

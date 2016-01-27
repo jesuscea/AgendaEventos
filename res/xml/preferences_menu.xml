@@ -14,6 +14,13 @@
             android:title="@string/prefVibrate"
             android:summary="@string/prefVibrateSummary" android:defaultValue="false"/>
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/prefAutoEnd">
+        <CheckBoxPreference
+            android:key="chkAutoEndEvent"
+            android:title="@string/prefAutoEndEvent"
+            android:summary="@string/prefAutoEndEventSummary"/>
+    </PreferenceCategory>
     
     <!-- Opciones para mostrar/ocultar pestañas -->
     <PreferenceCategory android:title="@string/prefTabs">
@@ -26,6 +33,11 @@
             android:key="chkWork"
             android:title="@string/tabWork"
             android:summary="@string/prefTabWorkSummary" android:defaultValue="true"/>
+
+        <CheckBoxPreference
+            android:key="chkShop"
+            android:title="@string/tabShop"
+            android:summary="@string/prefTabShopSummary" android:defaultValue="true"/>
         
         <CheckBoxPreference
             android:key="chkAlarms"
@@ -42,6 +54,10 @@
         <Preference android:defaultValue="0" 
             android:key="btnWork" 
             android:title="@string/tabWork" 
+            android:summary="@string/prefTabOrderSummary"/>
+        <Preference android:defaultValue="0"
+            android:key="btnShop"
+            android:title="@string/tabShop"
             android:summary="@string/prefTabOrderSummary"/>
         <Preference android:defaultValue="0" 
             android:key="btnAlarms" 

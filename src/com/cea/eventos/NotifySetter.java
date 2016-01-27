@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 
 
-// Esta clase se encarga de iniciar la gestión de las alarmas creadas y 
-// Notficará aquellas que haya cumplido la fecha y hora
+// Esta clase se encarga de iniciar la gestion de las alarmas creadas y
+// Notficara aquellas que haya cumplido la fecha y hora
 public class NotifySetter extends BroadcastReceiver {
 	@Override
     public void onReceive(Context context, Intent intent) {

@@ -2,7 +2,6 @@ package com.cea.eventos;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -17,56 +16,69 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 // Actividad para crear/editar eventos
 public class EditEventoActivity extends Activity {
 
 	static final int DATE_DIALOG_ID = 0;
     static final int TIME_DIALOG_ID = 1;
-    static final int FIRST_YEAR = 1900;
-    static private boolean bOpNuevo;
-    
-    private Intent intent;
-    private Button btnDate;
-    private Button btnTime;
-    private Button btnSaveTop;
+
+	private Intent intent;
+	private Button btnSaveTop;
     private Button btnSave;
     private EditText edTitulo;
     private EditText edDesc;
     private RadioButton radioTask;
     private RadioButton radioWork;
+    private RadioButton radioShop;
     private CheckBox chkNotify;
     private CheckBox chkAlarm;
     private CheckBox chkNotifyBar;
     private TextView edDateTimeSelected;
-    private Date m_dDateTime;
+    private Calendar m_dDateTime;
     private TableLayout lyNotifyData;
     private SimpleDateFormat format;
-    
+    private CheckBox chkRepeat;
+    private LinearLayout lyRepeat;
+    private ToggleButton chkSun;
+    private ToggleButton chkMon;
+    private ToggleButton chkTue;
+    private ToggleButton chkWed;
+    private ToggleButton chkThu;
+    private ToggleButton chkFri;
+    private ToggleButton chkSat;
+
     private long m_iID;
     private String m_sTitulo;
     private String m_sDesc;
     private int m_iTipo;
     private int m_iNotify;
-    private Date m_dFecha;
-    private boolean m_bFin;    
+    private Calendar m_dFecha;
+    private boolean m_bFin;
+    private boolean m_bRepeat;
+    private boolean[] m_bWeekDays;
            
-	// CreaciÛn de la actividad
+	// Creaci√≥n de la actividad
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.edit_evento);
-		
-		format = new SimpleDateFormat(GlobalValues.FORMAT_DATE, new Locale("es","ES"));
+
+		Locale current = getResources().getConfiguration().locale;
+		format = new SimpleDateFormat(GlobalValues.FORMAT_DATE, current);
 		intent = this.getIntent();
-	
-		btnDate = (Button)this.findViewById(R.id.btnDate);
-		btnTime = (Button)this.findViewById(R.id.btnTime);
+
+        m_bWeekDays = new boolean[7];
+
+		Button btnDate = (Button) this.findViewById(R.id.btnDate);
+		Button btnTime = (Button) this.findViewById(R.id.btnTime);
 		btnSaveTop = (Button)this.findViewById(R.id.btnSaveTop);
 		btnSave = (Button)this.findViewById(R.id.btnSave);
 		
@@ -77,42 +89,70 @@ public class EditEventoActivity extends Activity {
 		
 		radioTask = (RadioButton)this.findViewById(R.id.rdTask);
 		radioWork = (RadioButton)this.findViewById(R.id.rdWork);
+        radioShop = (RadioButton)this.findViewById(R.id.rdShop);
 		
 		edTitulo = (EditText)this.findViewById(R.id.edTitulo);
 		edDesc   = (EditText)this.findViewById(R.id.edDescripcion);
 		edDateTimeSelected = (TextView)this.findViewById(R.id.edDateTimeSelected);
+
+        chkRepeat = (CheckBox)this.findViewById(R.id.chkRepeat);
+        lyRepeat = (LinearLayout)this.findViewById(R.id.lyRepeat);
+        chkSun = (ToggleButton)this.findViewById(R.id.chkSunday);
+        chkMon = (ToggleButton)this.findViewById(R.id.chkMonday);
+        chkTue = (ToggleButton)this.findViewById(R.id.chkTuesday);
+        chkWed = (ToggleButton)this.findViewById(R.id.chkWednesday);
+        chkThu = (ToggleButton)this.findViewById(R.id.chkThursday);
+        chkFri = (ToggleButton)this.findViewById(R.id.chkFriday);
+        chkSat = (ToggleButton)this.findViewById(R.id.chkSaturday);
 		
 		// Por defecto, ocultamos todo lo relacionado con las notificaciones
-		// Se mostrar· si se marca la opciÛn de "Notificar"
-		// Ocultamos el botÛn guardar y mostramos el de arriba
+		// Se mostrar√° si se marca la opci√≥n de "Notificar"
+		// Ocultamos el bot√≥n guardar y mostramos el de arriba
 		btnSaveTop.setVisibility(View.VISIBLE);
 		btnSave.setVisibility(View.GONE);
-		lyNotifyData.setVisibility(View.INVISIBLE);
+		lyNotifyData.setVisibility(View.GONE);
+        lyRepeat.setVisibility(View.GONE);
 		
 		// Evento Check del CheckBox de notificar
 		CheckBox.OnCheckedChangeListener CBNotifyListener = new CheckBox.OnCheckedChangeListener() {
         	@Override
         	public void onCheckedChanged(CompoundButton view, boolean isChecked) {
         		if (isChecked) {
-        			// Ocultamos el botÛn guardar y mostramos el de abajo
+        			// Ocultamos el bot√≥n guardar y mostramos el de abajo
         			btnSaveTop.setVisibility(View.GONE);
         			btnSave.setVisibility(View.VISIBLE);
         			lyNotifyData.setVisibility(View.VISIBLE);
-        			// Por defectos, activamos la notificaciÛn de alarma
+        			// Por defectos, activamos la notificaci√≥n de alarma
         			chkAlarm.setChecked(true);
         		}
         		else {
         			lyNotifyData.setVisibility(View.INVISIBLE);
         			chkAlarm.setChecked(false);
-        			// Ocultamos el botÛn guardar y mostramos el de arriba
+        			// Ocultamos el bot√≥n guardar y mostramos el de arriba
         			btnSaveTop.setVisibility(View.VISIBLE);
         			btnSave.setVisibility(View.GONE);
         		}
         	}
         };
         chkNotify.setOnCheckedChangeListener(CBNotifyListener);
+
+		// Evento Check del CheckBox de notificar
+		CheckBox.OnCheckedChangeListener CBRepeatListener = new CheckBox.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton view, boolean isChecked) {
+				if (!isChecked) {
+					// Ocultamos el cuadro de selecci√≥n de d√≠as de repetici√≥n
+                    lyRepeat.setVisibility(View.GONE);
+				}
+				else {
+                    // Mostramos el cuadro de selecci√≥n de d√≠as de repetici√≥n
+                    lyRepeat.setVisibility(View.VISIBLE);
+				}
+			}
+		};
+        chkRepeat.setOnCheckedChangeListener(CBRepeatListener);
 		
-		// Evento OnClick del botÛn de selecciÛn de fecha
+		// Evento OnClick del bot√≥n de selecci√≥n de fecha
 		btnDate.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -121,7 +161,7 @@ public class EditEventoActivity extends Activity {
 			}
 		});
         
-		// Evento OnClick del botÛn de selecciÛn de hora
+		// Evento OnClick del bot√≥n de selecci√≥n de hora
 		btnTime.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -132,66 +172,72 @@ public class EditEventoActivity extends Activity {
 		
 		
 		// Obtenemos los valores del Bundle (tipo de operacion: Nuevo/Editar, la Base de datos y el ID del evento (si existe)
-		bOpNuevo = intent.getBooleanExtra(GlobalValues.BUNDLE_OP, false);//
+		boolean bOpNuevo = intent.getBooleanExtra(GlobalValues.BUNDLE_OP, false);
 		m_iID = -1;
-		m_dDateTime = new Date();
-		m_dDateTime.setMinutes(m_dDateTime.getMinutes() + 1);
-		edDateTimeSelected.setText(format.format(m_dDateTime));
-		if (bOpNuevo == false) {
+		m_dDateTime = Calendar.getInstance();
+		m_dDateTime.set(Calendar.MINUTE, m_dDateTime.get(Calendar.MINUTE) + 1);
+		edDateTimeSelected.setText(format.format(m_dDateTime.getTime()));
+		if (!bOpNuevo) {
 			// Cargamos los datos
 			loadDataEvent();
 		}
 	}
 
-	// Declaramos un objeto listener del evento click del Di·logo de fecha
+	// Declaramos un objeto listener del evento click del Di√°logo de fecha
 	private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
 		// Evento de Fecha seleccionada
 		public void onDateSet(DatePicker view, int yearSelected, int monthOfYear, int dayOfMonth) {
-			m_dDateTime.setYear(yearSelected - FIRST_YEAR);
-			m_dDateTime.setMonth(monthOfYear);
-			m_dDateTime.setDate(dayOfMonth);
+			m_dDateTime.set(Calendar.DATE, dayOfMonth);
+			m_dDateTime.set(Calendar.MONTH, monthOfYear);
+			m_dDateTime.set(Calendar.YEAR, yearSelected);
 			// Actualizamos el cuadro de texto indicando la fecha que se ha seleccionado
-			edDateTimeSelected.setText(format.format(m_dDateTime));
+			edDateTimeSelected.setText(format.format(m_dDateTime.getTime()));
 		}
 	};
 
-	// Declaramos un objeto listener del evento click del Di·logo de hora                 
+	// Declaramos un objeto listener del evento click del Di√°logo de hora
 	private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
 		// Evento de Hora seleccionada
 		public void onTimeSet(TimePicker view, int hourOfDay, int min) {
-			m_dDateTime.setHours(hourOfDay);
-			m_dDateTime.setMinutes(min);
+			m_dDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+			m_dDateTime.set(Calendar.MINUTE, min);
 			// Actualizamos el cuadro de texto indicando la hora que se ha seleccionado
-			edDateTimeSelected.setText(format.format(m_dDateTime));
+			edDateTimeSelected.setText(format.format(m_dDateTime.getTime()));
 		}
 	};
 	
-	// MÈtodo que se invocar· al llamar al mÈtodo showDialog(), en funciÛn del ID que se pase
+	// MÔøΩtodo que se invocara al llamar al metodo showDialog(), en funcion del ID que se pase
     @Override
     protected Dialog onCreateDialog(int id) {
-    	// Asignamos el dia y la hora actual del sistema
-        final Calendar calendar = Calendar.getInstance();
-        
-        int iYear   = calendar.get(Calendar.YEAR);
-        int iMonth  = calendar.get(Calendar.MONTH);
-        int iDay    = calendar.get(Calendar.DAY_OF_MONTH);
-        int iHour   = calendar.get(Calendar.HOUR_OF_DAY);
-        int iMinute = calendar.get(Calendar.MINUTE) + 1;
-             
-    	switch (id) {
-    	case DATE_DIALOG_ID:
-    		// Mostramos el di·logo de selecciÛn de fecha con la fecha indicada por defecto 
-    		return new DatePickerDialog(this, mDateSetListener, iYear, iMonth, iDay);
-    		// Mostramos el di·logo de selecciÛn de hora con la hora indicada por defecto 
-    	case TIME_DIALOG_ID:
-    		return new TimePickerDialog(this, mTimeSetListener, iHour, iMinute, true);
+
+		try {
+            // Asignamos el dia y la hora actual del sistema
+            final Calendar calendar = Calendar.getInstance();
+
+            int iYear = calendar.get(Calendar.YEAR);
+            int iMonth = calendar.get(Calendar.MONTH);
+            int iDay = calendar.get(Calendar.DAY_OF_MONTH);
+            int iHour = calendar.get(Calendar.HOUR_OF_DAY);
+            int iMinute = calendar.get(Calendar.MINUTE) + 1;
+
+            switch (id) {
+                case DATE_DIALOG_ID:
+                    // Mostramos el di√°logo de selecci√≥n de fecha con la fecha indicada por defecto
+                    return new DatePickerDialog(this, mDateSetListener, iYear, iMonth, iDay);
+                // Mostramos el di√°logo de selecci√≥n de hora con la hora indicada por defecto
+                case TIME_DIALOG_ID:
+                    return new TimePickerDialog(this, mTimeSetListener, iHour, iMinute, true);
+            }
+        }
+        catch(Exception ignored)
+        {
+
         }
     	
         return null;
     }
     
-    
-    // Evento OnClick del botÛn de guardar evento
+    // Evento OnClick del bot√≥n de guardar evento
 	public void onSaveClick(View v) {
 		if (saveEvent()) {
 			setResult(RESULT_OK, intent);
@@ -200,36 +246,44 @@ public class EditEventoActivity extends Activity {
 	}
     
     
-    // MÈtodo que crea o edita un evento
+    // M√©todo que crea o edita un evento
     private boolean saveEvent()
     {
-    	// Comprobaciones previas a la inserciÛn/ediciÛn
-    	// 1 - Se ha insertado un tÌtutlo
+    	// Comprobaciones previas a la inserci√≥n/edici√≥n
+    	// 1 - Se ha insertado un t√≠tutlo
     	if (edTitulo.getText().toString().isEmpty()) {
     		Toast.makeText(this, getResources().getString(R.string.msgNoTitle), Toast.LENGTH_SHORT).show();
     		return false;
     	}
     	// 2 - No se ha indicado el tipo de evento (por si acaso)
-    	else if (!radioTask.isChecked() && !radioWork.isChecked()) {
+    	else if (!radioTask.isChecked() && !radioWork.isChecked() && !radioShop.isChecked()) {
     		Toast.makeText(this, getResources().getString(R.string.msgNoTipo), Toast.LENGTH_SHORT).show();
 			return false;
     	}
-    	// 3 - Se ha marcado que se quiere notificar, pero no se ha indicado quÈ tipo de notificaciÛn o la fecha no es correcta
+    	// 3 - Se ha marcado que se quiere notificar, pero no se ha indicado qu√© tipo de notificaci√≥n o la fecha no es correcta
     	else if (chkNotify.isChecked()) {
-    		// 3.1 - No se ha indicado tipo de notificaciÛn
+    		// 3.1 - No se ha indicado tipo de notificaci√≥n
     		if (!chkAlarm.isChecked() && !chkNotifyBar.isChecked()) {
     			Toast.makeText(this, getResources().getString(R.string.msgNoNotify), Toast.LENGTH_SHORT).show();
     			return false;
     		}
     		
     		// 3.2 - La fecha no es correcta (es anterior a la fecha actual)
-    		if (!m_dDateTime.after(new Date())) {
+    		if (!m_dDateTime.after(Calendar.getInstance())) {
     			Toast.makeText(this, getResources().getString(R.string.msgBadDate), Toast.LENGTH_SHORT).show();
     			return false;
     		}
     	}
+        // 4 - Se ha marcado "repetir" pero no se ha indicado ning√∫n d√≠a
+        if (chkSun.isChecked() && !chkMon.isChecked() && !chkTue.isChecked() && !chkWed.isChecked() &&
+            chkThu.isChecked() && !chkFri.isChecked() && !chkSat.isChecked()) {
+
+            chkRepeat.setChecked(false);
+        }
+
+		m_bWeekDays = new boolean[7];
     	
-    	// Si hemos llegado hasta aquÌ, todo est· correcto para empezar a crear o editar el evento
+    	// Si hemos llegado hasta aqu√≠, todo est√° correcto para empezar a crear o editar el evento
     	// Cogemos los datos de la actividad
     	m_sTitulo = edTitulo.getText().toString();
     	m_sDesc   = edDesc.getText().toString();
@@ -239,13 +293,16 @@ public class EditEventoActivity extends Activity {
     	}
     	else if (radioWork.isChecked()) {
     		m_iTipo = EventosDBAdapter.WORK;
-    	}    	
+    	}
+        else if (radioShop.isChecked()) {
+            m_iTipo = EventosDBAdapter.SHOP;
+        }
     	
     	m_dFecha = m_dDateTime;
-    	// SÛlo horas y minutos (los segundos siempre 0)
-    	m_dFecha.setSeconds(0);
+    	// S√≥lo horas y minutos (los segundos siempre 0)
+    	m_dFecha.set(Calendar.SECOND, 0);
     	m_iNotify = EventosDBAdapter.NO_NOTIFY;
-    	// Seg˙n el tipo de notificaciÛn, establecemos el valor correspondiente
+    	// Seg√∫n el tipo de notificaci√≥n, establecemos el valor correspondiente
     	if (chkNotify.isChecked() && chkAlarm.isChecked() && chkNotifyBar.isChecked()) {
     		m_iNotify = EventosDBAdapter.NOTIFY_ALARM_BAR;
     	}
@@ -256,33 +313,51 @@ public class EditEventoActivity extends Activity {
     		m_iNotify = EventosDBAdapter.NOTIFY_ALARM;
     	}
     	
-    	// Al crear/editar, se presupone que no est· finalizado el evento
+    	// Al crear/editar, se presupone que no est√° finalizado el evento
     	m_bFin = false;
+
+        m_bRepeat = chkRepeat.isChecked();
+
+		if (m_bWeekDays.length == 7) {
+			m_bWeekDays[0] = chkSun.isChecked();
+			m_bWeekDays[1] = chkMon.isChecked();
+			m_bWeekDays[2] = chkTue.isChecked();
+			m_bWeekDays[3] = chkWed.isChecked();
+			m_bWeekDays[4] = chkThu.isChecked();
+			m_bWeekDays[5] = chkFri.isChecked();
+			m_bWeekDays[6] = chkSat.isChecked();
+		}
     	
     	intent.putExtra(GlobalValues.BUNDLE_ID, m_iID);
 		intent.putExtra(GlobalValues.BUNDLE_TITLE, m_sTitulo);
 		intent.putExtra(GlobalValues.BUNDLE_DESC, m_sDesc);
 		intent.putExtra(GlobalValues.BUNDLE_TIPO, m_iTipo);
 		intent.putExtra(GlobalValues.BUNDLE_NOTIFY, m_iNotify);
-		intent.putExtra(GlobalValues.BUNDLE_DATE, m_dFecha.getTime());
+		intent.putExtra(GlobalValues.BUNDLE_DATE, m_dFecha.getTimeInMillis());
 		intent.putExtra(GlobalValues.BUNDLE_FIN, m_bFin);
+        intent.putExtra(GlobalValues.BUNDLE_REPEAT, m_bRepeat);
+        intent.putExtra(GlobalValues.BUNDLE_WEEKDAYS, m_bWeekDays);
     	
     	return true;
     }
     
     
-    // MÈtodo que carga los datos de un evento en la actividad
+    // M√©todo que carga los datos de un evento en la actividad
     private void loadDataEvent() {
-    	// EdiciÛn de evento, cargamos los datos del evento actuales
+        m_bWeekDays = new boolean[7];
+    	// Edici√≥n de evento, cargamos los datos del evento actuales
     	m_iID     = intent.getLongExtra(GlobalValues.BUNDLE_ID, -1);
 		m_sTitulo = intent.getStringExtra(GlobalValues.BUNDLE_TITLE);
 		m_sDesc   = intent.getStringExtra(GlobalValues.BUNDLE_DESC);
 		m_iTipo   = intent.getIntExtra(GlobalValues.BUNDLE_TIPO, 0);
 		m_iNotify = intent.getIntExtra(GlobalValues.BUNDLE_NOTIFY, 0);
 		m_bFin    = (intent.getIntExtra(GlobalValues.BUNDLE_FIN, 0) != 0);
+        m_bRepeat = (intent.getIntExtra(GlobalValues.BUNDLE_REPEAT, 0) != 0);
+        m_bWeekDays = intent.getBooleanArrayExtra(GlobalValues.BUNDLE_WEEKDAYS);
 		long lFecha = intent.getLongExtra(GlobalValues.BUNDLE_DATE, 0);
 		// Formateamos la fecha
-		m_dFecha = new Date(lFecha);
+		m_dFecha = Calendar.getInstance();
+		m_dFecha.setTimeInMillis(lFecha);
     	
     	// Una vez obtenidos los datos los mostramos en la actividad
     	edTitulo.setText(m_sTitulo);
@@ -290,10 +365,17 @@ public class EditEventoActivity extends Activity {
     	if (m_iTipo == EventosDBAdapter.WORK) {
     		radioTask.setChecked(false);
     		radioWork.setChecked(true);
+            radioShop.setChecked(false);
     	}
+        else if (m_iTipo == EventosDBAdapter.SHOP) {
+            radioTask.setChecked(false);
+            radioWork.setChecked(false);
+            radioShop.setChecked(true);
+        }
     	else {
     		radioTask.setChecked(true);
     		radioWork.setChecked(false);
+            radioShop.setChecked(false);
     	}
     	
 		if (m_iNotify == EventosDBAdapter.NOTIFY_ALARM_BAR) {	
@@ -312,14 +394,25 @@ public class EditEventoActivity extends Activity {
 			chkNotifyBar.setChecked(false);
 		}
 		else if (m_iNotify == EventosDBAdapter.NO_NOTIFY) {
-    		// Al desmarcar, se invoca el evento de ocultar el grupo de opciones de notificaciÛn
+    		// Al desmarcar, se invoca el evento de ocultar el grupo de opciones de notificaci√≥n
     		chkNotify.setChecked(false);
     	}
 		
-		edDateTimeSelected.setText(format.format(m_dFecha));
+		edDateTimeSelected.setText(format.format(m_dFecha.getTime()));
+
+        chkRepeat.setChecked(m_bRepeat);
+        if (m_bWeekDays.length == 7) {
+            chkSun.setChecked(m_bWeekDays[0]);
+            chkMon.setChecked(m_bWeekDays[1]);
+            chkTue.setChecked(m_bWeekDays[2]);
+            chkWed.setChecked(m_bWeekDays[3]);
+            chkThu.setChecked(m_bWeekDays[4]);
+            chkFri.setChecked(m_bWeekDays[5]);
+            chkSat.setChecked(m_bWeekDays[6]);
+        }
     }
     
-    // MÈtodo de la actividad que se invoca cuando Èsta finaliza
+    // M√©todo de la actividad que se invoca cuando ÔøΩsta finaliza
     @Override	
 	public void finish() {
 		super.finish();
