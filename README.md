@@ -1,6 +1,10 @@
 AgendaEventos
 =============
 
+# Description
+
+**Playstore link:** https://play.google.com/store/apps/details?id=com.cea.eventos
+
 App Android to manage diary tasks and work tasks, allowed to be notified with an alarm or/and status bar.
 
 - Add, edit and delete events
